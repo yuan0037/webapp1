@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:6
+-keep class com.algonquincollege.yuan0037.webapp1.CordovaApp { <init>(...); }
+
