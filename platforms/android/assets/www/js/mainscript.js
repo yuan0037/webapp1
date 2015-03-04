@@ -4,7 +4,7 @@ var numLinks = 0;
 var numPages = 0;
 var names = [];
 var waitingMessage; 
-var randomeContactPara;
+var randomContactPara;
 //create the pageShow type event.
 var pageshow = document.createEvent("CustomEvent");
 pageshow.initEvent("pageShow", false, true);
@@ -14,7 +14,7 @@ function setup(){
     //console.log("device ready now....");
     
     waitingMessage = document.createElement("p");
-    randomeContactPara = document.createElement("p");
+    randomContactPara = document.createElement("p");
     //-------initilize arrays to save pages and links--------
     pages = document.querySelectorAll('[data-role="page"]');
     links = document.querySelectorAll('[data-role="pagelink"]');
@@ -223,6 +223,11 @@ function findRandomContact() {
 }
 
 function onSuccess(contacts) {
+    
+//    var now = 0,
+//        then = 0;
+//    now = (new Date()).getTime();
+    if (contacts.length>0) {
     for (var i=0; i<contacts.length; i++) {
         if (contacts[i].displayName) {  // many contacts don't have displayName
             names.push(contacts[i].displayName);
@@ -230,9 +235,20 @@ function onSuccess(contacts) {
     }
    // console.log("on success now ="+names);
     //alert('contacts loaded');
-    randomeContactPara.innerHTML = "Finished. Located "+names.length+" contacts. A random contact is displayed: "+names[Math.floor((Math.random()*names.length))];
+     
+//    var rando = "";
+//    while (rando !== "") {
+//        rando = contacts[Math.random()*contacts.length].displayName;
+//    }
+    randomContactPara.innerHTML = "Finished. Located "+names.length+" contacts. A random contact is displayed: "+names[Math.floor((Math.random()*names.length))];}
+    else{
+         randomContactPara.innerHTML = "Contact list is empty.";
+    }
     document.querySelector("#randomContact").removeChild(waitingMessage);
-    document.querySelector("#randomContact").appendChild(randomeContactPara);
+    document.querySelector("#randomContact").appendChild(randomContactPara);
+    
+//        then = (new Date()).getTime();
+//    console.log("Time = " + (then-now));
 }
 
 function onError(){
