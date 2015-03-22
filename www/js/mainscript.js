@@ -9,9 +9,12 @@ var randomContactPara;
 var pageshow = document.createEvent("CustomEvent");
 pageshow.initEvent("pageShow", false, true);
 
+document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("deviceready", setup);
+});
 //document.addEventListener("deviceready", function () {
 function setup(){
-    //console.log("device ready now....");
+    console.log("device ready and content ready now");
     
     waitingMessage = document.createElement("p");
     randomContactPara = document.createElement("p");
